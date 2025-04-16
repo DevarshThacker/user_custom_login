@@ -25,6 +25,7 @@ Route::post('update/{id}', [AuthController::class, 'update'])->name('update');
 
 Route::delete('destroy/{id}', [AuthController::class, 'destroy'])->name('destroy');
 
+
 Route::get('/', function () {
     return view('welcome');
 });

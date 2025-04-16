@@ -37,6 +37,9 @@ class AuthController extends Controller
     public function index()
 
     {
+        if (Auth::check()) {
+            return redirect()->route('dashboard')->with('success', 'You are already logged in.');
+        }
 
         return view('auth.login');
 
@@ -77,7 +80,6 @@ class AuthController extends Controller
     public function postLogin(Request $request)
 
     {
-
         $request->validate([
 
             'email' => 'required',
@@ -97,6 +99,7 @@ class AuthController extends Controller
                         ->withSuccess('You have Successfully loggedin');
 
         }
+
 
 
 
@@ -293,4 +296,6 @@ class AuthController extends Controller
         }
         return redirect('dashboard')->with('error', 'User not found.');
     }
+
 }
+
