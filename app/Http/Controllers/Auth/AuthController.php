@@ -122,6 +122,7 @@ class AuthController extends Controller
     public function postRegistration(Request $request)
 
     {
+        // dd($request->all());
 
         $request->validate([
 
@@ -147,7 +148,10 @@ class AuthController extends Controller
         'name' => $request->name,
         'email' => $request->email,
         'password' => Hash::make($request->password),
-         'image' => $imageName, // Store the file name in the database;, // assumes your DB column is 'photo'
+        'image' => $imageName, // Store the file name in the database;, // assumes your DB column is 'photo'
+        'country' => $request->country,
+        'state' => $request->state,
+        'city' => $request->city,
 
     ]);
 
@@ -268,16 +272,13 @@ class AuthController extends Controller
         } else {
             $imageName = $user->image;
         }
-        // $user->update([
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'password' => $request->password ? bcrypt($request->password) : $user->password,
-        //     'image' => $imageName,
-        // ]);
+
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->image = $imageName; // Store the file name in the database;, // assumes your DB column is 'photo'
-
+        $user->country = $request->input('country');
+        $user->state = $request->input('state');
+        $user->city = $request->input('city');
 
         if ($request->filled('password')) {
             $user->password = Hash::make($request->input('password'));
