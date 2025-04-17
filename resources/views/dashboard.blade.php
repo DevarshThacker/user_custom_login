@@ -14,8 +14,11 @@
                 <th>ID</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Country</th>
+                <th>State</th>
+                <th>City</th>
                 <th>Image</th>
-                <th>Created At</th>
+                <th>Registered At</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -24,8 +27,11 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
+                <td>{{ $user->country }}</td>
+                <td>{{ $user->state }}</td>
+                <td>{{ $user->city }}</td>
                 <td><img src="{{ asset('images2/' . $user->image) }}" width="60" height="60"></td>
-                <td>{{ $user->created_at }}</td>
+                <td>{{ $user->created_at->format('Y-m-d') }}</td>
                 <td>
                     <a href="{{ route('edit', $user->id) }}"
                         class="btn btn-primary btn-sm">Edit</a>
